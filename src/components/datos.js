@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
     
 export default function Datos() {
-    const [datos, setDatos] = useState({});
+    const [datos, setDatos] = useState([]);
 
 
     async function ColeccionDatos(){
@@ -22,8 +22,19 @@ export default function Datos() {
 
     return (
         <div>
-            {datos && datos.map(x=>x.name)}
+            {datos && datos.map((x)=>{
 
+return(
+    <div key={x.id}>
+        <img src={x['picture_url']} alt={x.name} height="130px"/> 
+        <p>{x.name}</p>
+        <p>{x.price}</p>
+        <span>edit</span>
+        <span>delete</span>
+        <br/><br/><br/><br/>
+    </div>
+    )
+})}
         </div>
 
 
