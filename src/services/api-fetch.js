@@ -22,12 +22,12 @@ export default async function apiFetch(
   }
 
   const config = {
-      
+
     method: method || (body ? "POST" : "GET"),
     headers,
     body: body ? JSON.stringify(body) : null,
   };
-  console.dir(config);
+
   const response = await fetch(BASE_URI + endpoint, config);
 
   let data;
