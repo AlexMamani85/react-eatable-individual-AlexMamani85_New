@@ -11,10 +11,18 @@ export default function Datos() {
         apiFetch("products").then(setDatos);       
     },[])
 
+    function handleDelete(id) {
+        const temp=datos.filter(item=>id!==item.id);
+        setDatos(temp);
+        apiFetch("products/"+id, {method: 'DELETE'}); 
+
+    }
+
+    
     return (
         <div>
             {datos && datos.map((x)=>{
-                return(<Card data={x}></Card>)
+                return(<Card id={x.id} data={x}  onDelete={handleDelete}></Card>)
 })}
         </div>
 

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import {typography} from '../global/typography'
 
 
-export default function Card({data}){
+export default function Card({data, onDelete, onEdit}){
 
 
     const ImgComida = styled.img`
@@ -43,7 +43,7 @@ export default function Card({data}){
                 <Price>${data.price}</Price>
                 <ButtonsContainer>
                 <span>edit</span>
-                <span>delete</span>
+                <button onClick={()=>onDelete(data.id)}>delete</button>
                 </ButtonsContainer>
                 <br/><br/><br/><br/>
             </div>
