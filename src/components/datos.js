@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-
+import Card from './card'
     
 export default function Datos() {
     const [datos, setDatos] = useState([]);
@@ -23,17 +23,7 @@ export default function Datos() {
     return (
         <div>
             {datos && datos.map((x)=>{
-
-return(
-    <div key={x.id}>
-        <img src={x['picture_url']} alt={x.name} height="130px"/> 
-        <p>{x.name}</p>
-        <p>{x.price}</p>
-        <span>edit</span>
-        <span>delete</span>
-        <br/><br/><br/><br/>
-    </div>
-    )
+                return(<Card data={x}></Card>)
 })}
         </div>
 
