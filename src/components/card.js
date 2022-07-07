@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
+// import { css } from "@emotion/react";
+import {typography} from '../global/typography'
 
 
 export default function Card({data}){
-    console.log(data)
+
 
     const ImgComida = styled.img`
     height: 130px;
@@ -11,22 +13,40 @@ export default function Card({data}){
     clip: rect(0px,135px,135px,0px,);
 `;
     const Name = styled.p`
-    
+    ${typography.text.xl};
 `;
+    const Price = styled.p`
+    ${typography.text.xl};
+    color: red;
+    `;
 
- 
+    //    height: 212px;
+    const FrontCard = styled.div`
+    height: 300px;
+    width: 156px;
+    border: red 1px solid;
+    
+    `;
+    const ButtonsContainer = styled.div`
+    display:flex;
+    justify-content: space-between;
+    
+    `;
+
     return (
-        <div key={data.id}>
+        <FrontCard key={data.id}>
             <div>
             <ImgComida src={data['picture_url']} alt={data.name}/>
             </div>
             <div>
                 <Name>{data.name}</Name>
-                <p>{data.price}</p>
+                <Price>${data.price}</Price>
+                <ButtonsContainer>
                 <span>edit</span>
                 <span>delete</span>
+                </ButtonsContainer>
                 <br/><br/><br/><br/>
             </div>
-        </div>
+        </FrontCard>
         )
         }
