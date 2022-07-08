@@ -8,8 +8,10 @@ import {
   useParams, // Para capturar los id's
   Outlet
 } from "react-router-dom";
+import Index from './pages'
+import CreatePage from './pages/create-page'
+import ViewPage from './pages/view-page'
 import EditPage from './pages/edit-page'
-
 
 function App() {
   
@@ -19,10 +21,10 @@ function App() {
       {/* <Datos></Datos> */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Datos />} /> 
-          <Route path="/edit" element={<EditPage />} />
-
-
+          <Route path="/" element={<Index />} />
+          <Route path="create" element={<CreatePage />} />
+          <Route path="view/:dishId" element={<ViewPage/>} />
+          <Route path="edit/:dishId" element={<EditPage/>} />
         </Routes>
       </BrowserRouter>
     </div>
