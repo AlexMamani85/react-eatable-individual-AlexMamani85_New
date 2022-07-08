@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 // import { css } from "@emotion/react";
 import {typography} from '../global/typography'
+import editIcon from '../img/editIcon.svg';
+import deleteIcon from '../img/deleteIcon.svg';
 
+import {Link} from 'react-router-dom';
 
 export default function Card({data, onDelete, onEdit}){
 
@@ -42,8 +45,16 @@ export default function Card({data, onDelete, onEdit}){
                 <Name>{data.name}</Name>
                 <Price>${data.price}</Price>
                 <ButtonsContainer>
-                <span>edit</span>
-                <button onClick={()=>onDelete(data.id)}>delete</button>
+                <Link to={`/edit/${data.id}`}>
+                    <img src={editIcon} alt="edit" />
+                </Link>
+
+                <Link to={`/delete/${data.id}`}>
+                    <img src={deleteIcon} alt="del" />
+                </Link>
+
+
+
                 </ButtonsContainer>
                 <br/><br/><br/><br/>
             </div>
