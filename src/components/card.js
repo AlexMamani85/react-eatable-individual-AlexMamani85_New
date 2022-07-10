@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 // import { css } from "@emotion/react";
-import {typography} from '../global/typography'
+import {typography} from '../styles/typography'
 import editIcon from '../img/editIcon.svg';
 import deleteIcon from '../img/deleteIcon.svg';
 
 import {Link} from 'react-router-dom';
 
-export default function Card({data, onDelete, onEdit}){
+export default function Card({data, onClickOpen, onClickClose, onDelete, onEdit}){
 
 
     const ImgComida = styled.img`
@@ -49,9 +49,9 @@ export default function Card({data, onDelete, onEdit}){
                     <img src={editIcon} alt="edit" />
                 </Link>
 
-                <Link to={`/delete/${data.id}`}>
+                <a onClick={onClickOpen}>
                     <img src={deleteIcon} alt="del" />
-                </Link>
+                </a>
 
 
 
