@@ -18,17 +18,20 @@ export default function Store({children}){
 
         
         apiFetch("products").then(x=>{
-            localStorage.setItem(dataReactEatable, JSON.stringify(x)) //discoDuro
-            setDishes(x)    //memoriaRam
+            localStorage.setItem(dataReactEatable, JSON.stringify(x)); //discoDuro
+            setDishes(x);   //memoriaRam
+
         });
    
     },[])
 
     function createDish(newDish) {
         const temp = [...JSON.parse(localStorage.getItem(dataReactEatable))];
-        temp.push(newDish);
+        apiFetch( "products" , { body: newDish }).then(x=>temp.push(x))//x=>newDish=x
         setDishes(temp);
         localStorage.setItem(dataReactEatable, JSON.stringify(temp));
+        console.log(localStorage.getItem(dataReactEatable));
+        console.log(dishes);
     }
 
     function getDish(id) {
@@ -39,11 +42,18 @@ export default function Store({children}){
     }
 
     function updateDish(item) {
-        const actualDishes = dishes || localStorage.getItem(dataReactEatable);
-        const index = actualDishes.findIndex((i)=>i.id===item.id);
-        const temp = [...actualDishes];
+        try{
+        item=JSON.parse(item);
+        const index = dishes.findIndex((x)=>Number(x.id)===Number(item.id));
+
+        const temp = [...dishes];
         temp[index] = {...item}
+        setDishes(temp);
         localStorage.setItem(dataReactEatable, JSON.stringify(temp));
+        }
+        catch (error){alert(error);
+
+        }
     }
 
     return (
