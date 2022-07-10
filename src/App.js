@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 import IndexPage from './pages'
 import CreatePage from './pages/create-page'
-import ViewPage from './pages/view-page'
 import EditPage from './pages/edit-page'
 import ModalPage from './pages/modal-page'
 import Store from './store/store'
@@ -25,7 +24,6 @@ function App() {
         <Routes>
           <Route path="/" element={<IndexPage />} />
           <Route path="create" element={<CreatePage />} />
-          <Route path="view/:dishId" element={<ViewPage/>} />
           <Route path="edit/:dishId" element={<EditPage/>} />
           <Route path="delete/:dishId" element={<ModalPage/>} />
         </Routes>
