@@ -11,60 +11,32 @@ export default function CreatePage() {
     // "description": "Causa rellena de pollo",
     // "picture_url": "https://tinyurl.com/2p9fjvj8"
 
-    const [name, setName] = useState("");
-    const [price, setPrice]= useState("");
-    const [category, setCategory]= useState("");
-    const [description, setDescription]= useState("");
-    const [pictureUrl, setPictureUrl]= useState("");
+
+    const [dish, setDish] = useState({
+        name: "", price: "", category: "", description: "", picture_url: "",
+      });
+
+
+      const { category, description, name, picture_url, price } = dish;
 
     const store = useAppContext();
 
-    function handleChange(e){
-        const name = e.target.name
-        const value = e.target.value
-        console.log(name, value);
-        switch(name) {
-            case 'name':
-                setName(value)
-                break;
-            case 'price':
-                setPrice(value)
-                break;
-            case 'category':
-                setCategory(value)
-                break;
-            case 'description':
-                setDescription(value)
-                break;
-            case 'pictureUrl':
-                setPictureUrl(value)
-                break;
-            default:
+    function handleChange(event) {
+        //price||dish.price
+        const { name, value } = event.target;
+        setDish({ ...dish, [name]: value });
+        console.log(dish);
+      }
 
 
-        }
-
-
-    }
-
-    function handleOnChangeFile(e) {
-
-
-    }
 
 
     function handleSubmit(e) {
         e.preventDefault();
-        const newDish = {
-            name, 
-            price,
-            category,
-            description,
-            pictureUrl
-        }
            // TODO: mandar a registrar el libro
-        store.createItem(newDish);
-        alert("Dish created");
+        store.createDish(dish);
+
+        console.log(store.dishes);
     }
 
     return (
@@ -112,19 +84,19 @@ export default function CreatePage() {
                     />
                     <Input
                         type="text"
-                        name="pictureUrl"
-                        value={pictureUrl}
+                        name="picture_url"
+                        value={picture_url}
                         onChange={handleChange}
                         label="Picture"
                         placeholder="direccion URL Image..."
                         required
                     /> 
-                  <div>{!!pictureUrl ? <img src={pictureUrl} width="200" /> : ""}</div>
+                  <div>{!!picture_url ? <img src={picture_url} width="200" alt='img'/> : ""}</div>
 
                   <Input 
                   type="submit" 
                   value="Create Dish"
-                  onChange={handleOnChangeFile}
+                  onChange={handleSubmit}
                   
                   />
 
