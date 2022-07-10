@@ -7,6 +7,7 @@ const AppContext = createContext({
     createDish: (dish)=>{},
     getDish: (id)=>{},
     updateDish: (dish)=>{},
+    deleteDish: (id)=>{},
 
 })
 
@@ -55,6 +56,29 @@ export default function Store({children}){
 
         }
     }
+    function deleteDish(dishId) {
+        try{
+        dishId=dishId.slice(1,4)
+
+        console.log(Number(dishId))
+        console.log(dishes);
+        const index = dishes.findIndex((x)=>Number(x.id)===Number(dishId));
+
+        console.log(index);
+        const temp = [...dishes];
+        temp.splice(index, 1)
+        setDishes(temp)
+        console.log(dishes);
+        localStorage.setItem(dataReactEatable, JSON.stringify(temp));
+        apiFetch( `products/${Number(dishId)}`, { method: 'DELETE'})
+
+
+        
+        }
+        catch (error){alert(error);
+
+        }
+    }
 
     return (
         <AppContext.Provider
@@ -63,6 +87,7 @@ export default function Store({children}){
                 createDish,
                 getDish,
                 updateDish,
+                deleteDish,
             }}
         >
         {children}
